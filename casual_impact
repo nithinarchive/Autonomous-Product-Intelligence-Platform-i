@@ -1,0 +1,11 @@
+from dowhy import CausalModel
+
+def estimate_causal_effect(data):
+    model = CausalModel(
+        data=data,
+        treatment="feature_enabled",
+        outcome="retention"
+    )
+    estimand = model.identify_effect()
+    estimate = model.estimate_effect(estimand)
+    return estimate.value
